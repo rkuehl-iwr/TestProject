@@ -27,6 +27,7 @@ jobs:
       - brew install qt5
       - brew link qt5 --force
       script:
+        - export PATH="/usr/local/opt/qt/bin:$PATH"
         - cmake .
         - cmake --build .
     
