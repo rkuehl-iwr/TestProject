@@ -1,1 +1,26 @@
+language: cpp
 
+#os:
+#  - linux
+#  - osx
+#  - windows
+
+jobs:
+  include:
+    - os: linux
+      dist: bionic
+      script:
+        - cmake .
+        - cmake --build .
+    
+    - os: osx
+      osx_image: xcode11.3
+      script:
+        - cmake .
+        - cmake --build .
+    
+    - os: windows
+      script:
+      - cmake .
+      - cmake --build .
+  
