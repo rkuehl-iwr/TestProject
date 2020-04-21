@@ -9,22 +9,18 @@ jobs:
   include:
     - os: linux
       dist: bionic
-      sudo: false
-      
       script:
         - cmake .
         - cmake --build .
     
     - os: osx
       osx_image: xcode11.3
-      
       script:
         - cmake .
         - cmake --build .
     
     - os: windows
-    
-    script:
+      script:
       - cmake .
       - cmake --build .
   
