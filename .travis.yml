@@ -12,11 +12,12 @@ jobs:
       before_install:
       - sudo apt-get update -qq
       - sudo apt-get install build-essential
-      - sudo apt-get install qt5 libgl-dev
+      - sudo apt-get install qtbase5-dev libgl-dev
       compiler:
       - clang
       - gcc
       script:
+        - export QT_SELECT=qt5
         - cmake .
         - cmake --build .
     
