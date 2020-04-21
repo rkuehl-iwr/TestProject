@@ -11,8 +11,8 @@ jobs:
       dist: bionic
       before_install:
       - sudo apt-get update -qq
-      - sudo apt-get install devscripts build-essential lintian dh-make
-      - sudo apt-get install qtdeclarative5-dev qt5-default libjack-jackd2-dev
+      - sudo apt-get install build-essential
+      - sudo apt-get install qt5 libgl-dev
       compiler:
       - clang
       - gcc
