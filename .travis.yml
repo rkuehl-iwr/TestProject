@@ -31,9 +31,8 @@ jobs:
         - cmake .
         - cmake --build .
     
-    - os: windows
-      script:
-      - choco install qt-sdk
-      - cmake .
-      - cmake --build .
+#    - os: windows
+#      script:
+#      - cmake .
+#      - cmake --build .
   
