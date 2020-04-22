@@ -36,8 +36,8 @@ for:
   - export PATH="/usr/local/opt/qt/bin:$PATH"
   after_build:
   - mkdir release
-  - cp testProj release
-  - macdeployqt testProj.app
+  - cp testProj release/testProj.app
+  - macdeployqt release/testProj.app
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
