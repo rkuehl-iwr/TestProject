@@ -11,8 +11,7 @@ build_script:
 after_build:
   - windeployqt release/testProj.exe
   - cmd: cp LICENSE release/LICENSE.txt"
-  - rm release/*.o
-  - rm release/*.cpp
+  - ls release
 
 artifacts:
   - path: Output\testProj.exe
