@@ -2,17 +2,44 @@ branches:
   only:
     - master
 
-install:
-  - set QTDIR=C:\Qt\5.14.1\msvc2017_64
-  - set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
-build_script:
-  - cmake .
-  - cmake --build . --config Release
-after_build:
-  - windeployqt release/testProj.exe
-  - cmd: cp LICENSE release/LICENSE.txt"
-  - ls release
-
-artifacts:
-  - path: release
-    type: zip
+image:
+  - Visual Studio 2017
+  - Ubuntu
+  - macOS
+  
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2017
+          install:
+            - set QTDIR=C:\Qt\5.14.1\msvc2017_64
+            - set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
+          build_script:
+            - cmake .
+            - cmake --build . --config Release
+          after_build:
+            - windeployqt release/testProj.exe
+            - cmd: cp LICENSE release/LICENSE.txt"
+           
+          artifacts:
+            - path: release
+              type: zip
+      only:
+        - image: Ubuntu
+          install:
+            - sudo apt-get update -qq
+            - sudo apt-get install build-essential
+            - sudo apt-get install qtbase5-dev libqt5opengl-dev libgl-dev
+          build_script:
+            - cmake .
+            - cmake --build . --config Release
+          after_build:
+            - mkdir release
+            - cp testProj release/testProj
+            - cmd: cp LICENSE release/LICENSE.txt"
+           
+          artifacts:
+            - path: release
+              type: zip
+              
