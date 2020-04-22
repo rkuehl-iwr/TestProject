@@ -3,9 +3,9 @@ branches:
     - master
 
 image:
+  - macOS
   - Visual Studio 2019
   - Ubuntu
-  - macOS
   
 for:
 -
@@ -37,7 +37,7 @@ for:
   after_build:
   - mkdir release
   - cp testProj release
-  - macdeployqt -verbose=3 -dmg release/testProj
+  - macdeployqt release/testProj
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
