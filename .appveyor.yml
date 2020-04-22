@@ -7,13 +7,31 @@ image:
   - Ubuntu
   - macOS
   
-
-install:
+for:
+-
+  matrix:
+    only:
+      - image: Ubuntu
+  install:
+  - sudo apt-get update -qq
+  - sudo apt-get -y install build-essential
+  - sudo apt-get -y install qtbase5-dev libqt5opengl5-dev libgl-dev
+-
+  matrix:
+    only:
+      - image: Visual Studio 2019
+  install:
   - cmd: set QTDIR=C:\Qt\5.14.1\msvc2017_64
   - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
-  - sh: sudo apt-get update -qq
-  - sh: sudo apt-get -y install build-essential
-  - sh: sudo apt-get -y install qtbase5-dev libqt5opengl5-dev libgl-dev
+-
+  matrix:
+    only:
+      - image: macOS
+  install:
+  - brew install qt5
+  - brew link qt5 --force
+
+
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
   - cmake --build . --config Release
@@ -25,4 +43,4 @@ after_build:
   
 artifacts:
   - path: release
-    type: zip         
+    type: zip  
