@@ -37,8 +37,7 @@ for:
   after_build:
   - mkdir release
   - cp testProj release
-  - ls
-  - ls release
+  - otool -L release/testProj
   - macdeployqt release/testProj
 
 build_script:
