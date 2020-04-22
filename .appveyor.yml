@@ -28,8 +28,6 @@ for:
     only:
       - image: macOS
   install:
-  - brew install qt5
-  - brew link qt5 --force
   - export PATH="/usr/local/opt/qt/bin:$PATH"
 
 build_script:
