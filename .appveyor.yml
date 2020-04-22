@@ -3,7 +3,7 @@ branches:
     - master
 
 image:
-  - Visual Studio 2017
+  - Visual Studio 2019
   - Ubuntu
   - macOS
   
@@ -11,9 +11,9 @@ image:
 install:
   - cmd: set QTDIR=C:\Qt\5.14.1\msvc2017_64
   - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
-  - sh:  sudo apt-get update -qq
-  - sh: sudo apt-get install build-essential
-  - sh: sudo apt-get install qtbase5-dev libqt5opengl5-dev libgl-dev
+  - sh: sudo apt-get update -qq
+  - sh: sudo apt-get -y install build-essential
+  - sh: sudo apt-get -y install qtbase5-dev libqt5opengl5-dev libgl-dev
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
   - cmake --build . --config Release
