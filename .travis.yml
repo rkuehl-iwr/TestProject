@@ -33,6 +33,7 @@ jobs:
     
     - os: windows
       script:
+      - choco install qt-sdk
       - cmake .
       - cmake --build .
   
