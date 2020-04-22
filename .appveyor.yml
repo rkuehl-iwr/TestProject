@@ -37,8 +37,7 @@ for:
   after_build:
   - mkdir release
   - cp testProj release
-  - otool -L release/testProj
-  - macdeployqt release/testProj
+  - macdeployqt testProj.app
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
