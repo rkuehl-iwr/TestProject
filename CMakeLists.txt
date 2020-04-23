@@ -30,6 +30,4 @@ add_dependencies(testProj OpenGL::GL)
 
 target_link_libraries(testProj PRIVATE ${Qt5Widgets_LIBRARIES} ${Qt5OpenGL_LIBRARIES} ${Qt5Gui_LIBRARIES} OpenGL::GL)
 
-qt5_import_plugins(testProj INCLUDE Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
-
 install(TARGETS testProj DESTINATION bin)
