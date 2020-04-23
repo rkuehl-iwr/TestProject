@@ -41,13 +41,16 @@ for:
   - export QT_SELECT=qt5
   after_build:
   - mkdir release
-  - cp testProj release/testProj.app
+  - cp testProj release/testProj
   - cd release
-  - macdeployqt testProj.app -verbose=3
+  - macdeployqt testProj -verbose=3
   - cd ..
   - pwd
   - ls
-  - ls  /Users/appveyor/projects/testproject/install/bin/
+  - ls /Users/appveyor/projects/testproject/install/bin/
+  - cd /Users/appveyor/projects/testproject/install/bin/
+  - macdeployqt testProj -verbose=3
+  - which objdump
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install

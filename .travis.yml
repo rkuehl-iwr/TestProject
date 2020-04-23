@@ -1,23 +1,23 @@
 language: cpp
 
 os:
-  - linux
+#  - linux
   - osx
 #  - windows
 
 jobs:
   include:
-    - os: linux
-      dist: bionic
-      before_install:
-      - sudo apt-get update -qq
-      - sudo apt-get install build-essential
-      - sudo apt-get install qtbase5-dev libqt5opengl5-dev libgl-dev
-
-      script:
-        - export QT_SELECT=qt5
-        - cmake .
-        - cmake --build .
+#    - os: linux
+#      dist: bionic
+#      before_install:
+#      - sudo apt-get update -qq
+#      - sudo apt-get install build-essential
+#      - sudo apt-get install qtbase5-dev libqt5opengl5-dev libgl-dev
+#
+#      script:
+#        - export QT_SELECT=qt5
+#        - cmake .
+#        - cmake --build .
     
     - os: osx
       osx_image: xcode11.3
@@ -32,6 +32,7 @@ jobs:
         - cmake .
         - cmake --build .
         - macdeployqt testProj -verbose=3
+        - which objdump
         - ls
     
 #    - os: windows
