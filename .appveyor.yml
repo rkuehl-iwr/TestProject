@@ -38,6 +38,7 @@ for:
   - chmod -R 755 /usr/local/opt/qt5/*
   - export QTDIR="/usr/local/opt/qt5"
   - export PATH="$QTDIR/bin:$PATH"
+  - export QT_SELECT=qt5
   after_build:
   - mkdir release
   - cp testProj release/testProj.app
