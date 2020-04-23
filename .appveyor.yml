@@ -40,7 +40,7 @@ for:
   - mkdir release
   - cp testProj release/testProj.app
   - cd release
-  - macdeployqt testProj
+  - macdeployqt testProj.app
   - ls
   - cd ..
 
