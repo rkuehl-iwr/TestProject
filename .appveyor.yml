@@ -41,7 +41,7 @@ for:
   - export QT_SELECT=qt5
   after_build:
   - mkdir release
-  - cp testProj release/testProj
+  - cp -r testProj.app release/testProj.app
   - cd release
   - macdeployqt testProj.app -verbose=3
   - ls
