@@ -44,11 +44,13 @@ for:
   - cd release
   - macdeployqt testProj.app
   - ls
+  - ls bin
   - cd ..
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
   - cmake --build . --config Release
+  - cmake --build . --config Release --target install
   
 artifacts:
   - path: release

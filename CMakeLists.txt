@@ -30,4 +30,5 @@ add_dependencies(testProj OpenGL::GL)
 
 target_link_libraries(testProj PRIVATE ${Qt5Widgets_LIBRARIES} ${Qt5OpenGL_LIBRARIES} ${Qt5Gui_LIBRARIES} OpenGL::GL)
 
+include(InstallRequiredSystemLibraries)
 install(TARGETS testProj DESTINATION bin)
