@@ -43,14 +43,9 @@ for:
   - mkdir release
   - cp testProj release/testProj
   - cd release
-  - macdeployqt testProj -verbose=3
-  - cd ..
-  - pwd
+  - macdeployqt testProj.app -verbose=3
   - ls
-  - ls /Users/appveyor/projects/testproject/install/bin/
-  - cd /Users/appveyor/projects/testproject/install/bin/
-  - macdeployqt testProj -verbose=3
-  - which objdump
+  - cd ..
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install

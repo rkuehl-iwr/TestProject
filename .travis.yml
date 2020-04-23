@@ -31,8 +31,7 @@ jobs:
         - export QT_SELECT=qt5
         - cmake .
         - cmake --build .
-        - macdeployqt testProj -verbose=3
-        - which objdump
+        - macdeployqt testProj.app -verbose=3
         - ls
     
 #    - os: windows

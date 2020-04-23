@@ -15,10 +15,17 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
 endif()
 
 
+if(APPLE)
+    add_executable(testProj MACOSX_BUNDLE main.cpp
+        OpenGLWindow.cpp
+        OpenGLWindow.h)
+else()
+    add_executable(testProj main.cpp
+        OpenGLWindow.cpp
+        OpenGLWindow.h)
+endif()
 
-add_executable(testProj main.cpp
-    OpenGLWindow.cpp
-    OpenGLWindow.h)
+
 
 add_definitions(${Qt5Widgets_DEFINITIONS})
 target_include_directories(testProj PRIVATE ${Qt5Widgets_INCLUDES})
@@ -32,3 +39,5 @@ target_link_libraries(testProj PRIVATE ${Qt5Widgets_LIBRARIES} ${Qt5OpenGL_LIBRA
 
 include(InstallRequiredSystemLibraries)
 install(TARGETS testProj DESTINATION bin)
+
+
