@@ -43,9 +43,10 @@ for:
   - cp testProj release/testProj.app
   - cd release
   - macdeployqt testProj.app -verbose=3
-  - ls
-  - ls install/bin
   - cd ..
+  - pwd
+  - ls
+  - ls  /Users/appveyor/projects/testproject/install/bin/
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
