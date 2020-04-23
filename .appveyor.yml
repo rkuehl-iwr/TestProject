@@ -33,11 +33,16 @@ for:
     only:
       - image: macOS
   install:
-  - export PATH="/usr/local/opt/qt/bin:$PATH"
+  - chmod -R 755 /usr/local/opt/qt5/*;
+  - export QTDIR="/usr/local/opt/qt5";
+  - export PATH="$QTDIR/bin:$PATH";
   after_build:
   - mkdir release
   - cp testProj release/testProj.app
-  - macdeployqt release/testProj.app
+  - cd release
+  - macdeployqt testProj
+  - ls
+  - cd ..
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release
