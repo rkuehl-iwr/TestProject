@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum OS X deployment version")
 project(TestProject LANGUAGES CXX DESCRIPTION "Simple c++ test project")
 
 set(OpenGL_GL_PREFERENCE GLVND)
