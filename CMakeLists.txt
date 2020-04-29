@@ -21,6 +21,8 @@ add_executable(testProj main.cpp
     OpenGLWindow.cpp
     OpenGLWindow.h)
 
+target_compile_features(testProj PUBLIC cxx_std_17)
+
 add_definitions(${Qt5Widgets_DEFINITIONS})
 target_include_directories(testProj PRIVATE ${Qt5Widgets_INCLUDES})
 
