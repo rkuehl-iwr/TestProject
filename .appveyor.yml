@@ -32,9 +32,9 @@ for:
   - cmd: set QTDIR=C:\Qt\5.14\msvc2017_64
   - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
   after_build:
-  - windeployqt release/testProjectTests.exe
+  - windeployqt release/testProj.exe
   test_script:
-  - .\tests\Release\gigameshCore_tests.exe -o test_reportWin.xml -r junit & exit 0
+  - .\tests\Release\testProjectTests.exe -o test_reportWin.xml -r junit & exit 0
     #upload results
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_reportWin.xml))
