@@ -21,7 +21,9 @@ for:
   - cp testProj release
   test_script:
   - build/tests/testProjectTests -o test_reportUbuntu.xml -r junit || true
-  - sh: curl -F 'file=test_reportUbuntu.xml' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
+  on_finish:
+    - sh: |
+        find "$APPVEYOR_BUILD_FOLDER" -type f -name 'test_*.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
 -
   matrix:
     only:
@@ -56,7 +58,9 @@ for:
   - cd ..
   test_script:
   - build/tests/testProjectTests -o test_reportMac.xml -r junit || true
-  - sh: curl -F 'file=test_reportMac.xml' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
+  on_finish:
+    - sh: |
+        find "$APPVEYOR_BUILD_FOLDER" -type f -name 'test_*.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
