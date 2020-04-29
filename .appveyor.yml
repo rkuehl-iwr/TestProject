@@ -20,7 +20,7 @@ for:
   - mkdir release
   - cp testProj release
   test_script:
-  - build/tests/testProjectTests -o test_reportUbuntu.xml -r junit || true
+  - tests/testProjectTests -o test_reportUbuntu.xml -r junit || true
   on_finish:
     - sh: |
         find "$APPVEYOR_BUILD_FOLDER" -type f -name 'test_*.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
@@ -34,7 +34,7 @@ for:
   after_build:
   - windeployqt release/testProjectTests.exe
   test_script:
-  - .\build\tests\Release\gigameshCore_tests.exe -o test_reportWin.xml -r junit & exit 0
+  - .\tests\Release\gigameshCore_tests.exe -o test_reportWin.xml -r junit & exit 0
     #upload results
   - ps: $wc = New-Object 'System.Net.WebClient'
   - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_reportWin.xml))
@@ -57,7 +57,7 @@ for:
   - ls
   - cd ..
   test_script:
-  - build/tests/testProjectTests -o test_reportMac.xml -r junit || true
+  - tests/testProjectTests -o test_reportMac.xml -r junit || true
   on_finish:
     - sh: |
         find "$APPVEYOR_BUILD_FOLDER" -type f -name 'test_*.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
