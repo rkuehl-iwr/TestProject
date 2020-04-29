@@ -19,6 +19,9 @@ for:
   after_build:
   - mkdir release
   - cp testProj release
+  test_script:
+  - build/tests/testProjectTests -o test_reportUbuntu.xml -r junit || true
+  - sh: curl -F 'file=test_reportUbuntu.xml' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
 -
   matrix:
     only:
@@ -27,7 +30,12 @@ for:
   - cmd: set QTDIR=C:\Qt\5.14.1\msvc2017_64
   - cmd: set PATH=%QTDIR%\bin;C:\Qt\Tools\msvc2017_64\bin;%PATH%;
   after_build:
-  - windeployqt release/testProj.exe
+  - windeployqt release/testProjectTests.exe
+  test_script:
+  - .\build\tests\Release\gigameshCore_tests.exe -o test_reportWin.xml -r junit & exit 0
+    #upload results
+  - ps: $wc = New-Object 'System.Net.WebClient'
+  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_reportWin.xml))
 -
   matrix:
     only:
@@ -46,6 +54,9 @@ for:
   - macdeployqt testProj.app -verbose=3
   - ls
   - cd ..
+  test_script:
+  - build/tests/testProjectTests -o test_reportMac.xml -r junit || true
+  - sh: curl -F 'file=test_reportMac.xml' "https://ci.appveyor.com/api/testresults/junit/$APPVEYOR_JOB_ID"
 
 build_script:
   - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
